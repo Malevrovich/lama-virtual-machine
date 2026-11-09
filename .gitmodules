@@ -1,0 +1,4 @@
+[submodule "Lama"]
+	path = Lama
+	url = https://github.com/Malevrovich/Lama.git
+	ignore = untracked

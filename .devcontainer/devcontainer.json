@@ -1,15 +1,19 @@
 {
-  "name": "Homework 2 — Lama (Linux x86_64)",
+  "name": "Lama Virtual Machine — Linux x86_64",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".",
-    "options": ["--platform=linux/amd64"],
+    "options": [
+      "--platform=linux/amd64"
+    ],
     "args": {
       "USER_UID": "501",
       "USER_GID": "20"
     }
   },
-  "runArgs": ["--platform=linux/amd64"],
+  "runArgs": [
+    "--platform=linux/amd64"
+  ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/homework-2,type=bind",
   "workspaceFolder": "/workspaces/homework-2",
   "remoteUser": "opam",
@@ -23,8 +27,20 @@
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-        "cmake.generator": "Ninja"
+        "cmake.generator": "Ninja",
+        "clangd.path": "/usr/bin/clangd",
+        "clangd.arguments": [
+          "--background-index",
+          "--header-insertion=never"
+        ],
+        "C_Cpp.intelliSenseEngine": "disabled",
+        "cmake.configureOnOpen": false,
+        "cmake.configureSettings": {
+          "CMAKE_EXPORT_COMPILE_COMMANDS": true
+        },
+        "git.detectSubmodules": true
       }
     }
-  }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh"
 }

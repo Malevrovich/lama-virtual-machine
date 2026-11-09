@@ -1,0 +1,4 @@
+If:
+  PathMatch: Lama/.*
+CompileFlags:
+  CompilationDatabase: build/lama

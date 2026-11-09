@@ -65,3 +65,10 @@ RUN if ! getent group "${USER_GID}" >/dev/null; then \
 USER opam
 ENV PATH="/home/opam/.opam/4.14/bin:${PATH}"
 WORKDIR /workspaces/homework-2
+
+# Keep extra development tools after the cached OCaml installation/UID layers.
+USER root
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bear gdb \
+    && rm -rf /var/lib/apt/lists/*
+USER opam
