@@ -28,7 +28,7 @@
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "cmake.generator": "Ninja",
-        "clangd.path": "/usr/bin/clangd",
+        "clangd.path": "/usr/bin/clangd-18",
         "clangd.arguments": [
           "--background-index",
           "--header-insertion=never"

@@ -15,6 +15,7 @@ compile_commands.json
 *.bc
 *.i
 *.s
+/examples/*/*.dump.txt
 
 .DS_Store
 .idea/

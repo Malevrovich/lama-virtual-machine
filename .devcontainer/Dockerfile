@@ -3,8 +3,10 @@ FROM ocaml/opam:ubuntu-24.04-ocaml-4.14@sha256:a466a76facae8aa906428a678960504ee
 USER root
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-       clang gcc-multilib libffi-dev libpcre2-dev m4 pkg-config \
+       clang-18 gcc-multilib libffi-dev libpcre2-dev m4 pkg-config \
     && rm -rf /var/lib/apt/lists/*
+
+ENV CC=clang-18 CXX=clang++-18
 
 USER opam
 ARG LAMA_REVISION=235828c57c0bf24b965c96a41bf3348ac3334a46
@@ -25,7 +27,7 @@ RUN opam pin add Lama . --no-action --yes \
     && opam install Lama --deps-only --yes --jobs=4 --no-depexts
 
 # The VM requires Clang musttail; opam clears MAKEFLAGS but keeps GNUMAKEFLAGS.
-RUN GNUMAKEFLAGS=CC=clang opam install Lama --yes --jobs=4 --no-depexts \
+RUN GNUMAKEFLAGS=CC=clang-18 opam install Lama --yes --jobs=4 --no-depexts \
     && mkdir -p /home/opam/lama-bin \
     && ln -s "$(opam var bin)/lamac" /home/opam/lama-bin/lamac \
     && ln -s "$(opam var bin)/lamavm" /home/opam/lama-bin/lamavm \
@@ -44,7 +46,7 @@ CMD ["bash"]
 USER root
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-       g++ cmake ninja-build clangd \
+       g++ cmake ninja-build clangd-18 \
     && rm -rf /var/lib/apt/lists/*
 
 # Match host ownership on Colima bind mounts.
@@ -63,6 +65,6 @@ WORKDIR /workspaces/homework-2
 # Keep extra development tools after the cached OCaml installation/UID layers.
 USER root
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bear gdb \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bear gdb clang-format-18 \
     && rm -rf /var/lib/apt/lists/*
 USER opam

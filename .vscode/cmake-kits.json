@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Lama Devcontainer Clang 18",
+        "compilers": {
+            "C": "/usr/bin/clang-18",
+            "CXX": "/usr/bin/clang++-18"
+        },
+        "preferredGenerator": {
+            "name": "Ninja"
+        }
+    }
+]

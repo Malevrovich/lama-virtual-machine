@@ -2,3 +2,8 @@ If:
   PathMatch: Lama/.*
 CompileFlags:
   CompilationDatabase: build/lama
+---
+If:
+  PathMatch: bytecode-dumper/.*
+CompileFlags:
+  CompilationDatabase: build/clang18/bytecode-dumper

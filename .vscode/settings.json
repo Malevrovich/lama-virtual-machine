@@ -1,0 +1,11 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/bytecode-dumper",
+    "cmake.buildDirectory": "${workspaceFolder}/build/clang18/bytecode-dumper",
+    "cmake.generator": "Ninja",
+    "cmake.useCMakePresets": "never",
+    "cmake.configureSettings": {
+        "CMAKE_C_COMPILER": "/usr/bin/clang-18",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++-18",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+    }
+}

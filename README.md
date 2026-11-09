@@ -1,11 +1,18 @@
 # Lama Virtual Machine
 
-Devcontainer с Linux x86_64 для разработки на C/C++ и работы с Lama.
-Включает OCaml, Dune, opam, GCC, Clang, CMake, Ninja, GDB и clangd.
-В VS Code устанавливаются расширения Lama LSP, clangd и CMake Tools.
+ДЗ2 по курсу «Виртуальные машины». Разработка в VS Code Dev Container:
+Linux x86_64, Clang 18, C++20.
 
-При создании контейнера собирается Lama из сабмодуля `Lama/` и создаётся
-`compile_commands.json` для навигации и диагностики C-кода через clangd.
+Откройте папку через `Dev Containers: Reopen in Container`.
+При первом запуске автоматически собирается Lama и настраивается clangd.
+Для CMake Tools доступен kit `Lama Devcontainer Clang 18`.
 
-- `make lama` — пересобрать и установить Lama.
-- `make tooling` — обновить базу команд компиляции для clangd.
+Команды из корня проекта:
+
+| Команда | Действие |
+| --- | --- |
+| `make lama` | Собрать и установить Lama |
+| `make tooling` | Обновить `compile_commands.json` для VM и дампера |
+| `make bytecode-dumper` | Собрать [дампер](bytecode-dumper/README.md) |
+| `make examples` | Скомпилировать примеры и сохранить `.bc` и `.dump.txt` рядом с `.lama` |
+| `make clean-examples` | Удалить `.bc`, `.i` и `.dump.txt` из папок примеров |
