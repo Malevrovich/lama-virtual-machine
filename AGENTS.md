@@ -7,3 +7,6 @@
 - `make lama` rebuilds and installs the workspace fork; `make tooling` rebuilds
   C-VM/runtime and refreshes `build/lama/compile_commands.json` for clangd.
 - Commit changes to Lama in the fork first, then update the parent submodule pin.
+
+- Use ordinary commits and push directly to the working branch. Do not create
+  pull requests unless the user explicitly asks for one.
