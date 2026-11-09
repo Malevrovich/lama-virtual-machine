@@ -1,0 +1,6 @@
+var a = [10, 20];
+var b = a;
+
+b[0] := 99;
+write (a[0]);
+write (b[0])

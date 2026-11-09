@@ -1,0 +1,7 @@
+fun inc (x) {
+  x + 1
+}
+
+var f = inc;
+
+write (f (41))

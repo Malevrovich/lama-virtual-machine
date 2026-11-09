@@ -1,0 +1,11 @@
+fun describe (value) {
+  case value of
+    Point (x, y) -> x + y
+  | Empty -> 0
+  | _ -> 999
+  esac
+}
+
+write (describe (Point (10, 20)));
+write (describe (Empty));
+write (describe (Other (7)))

@@ -1,0 +1,11 @@
+fun headOrZero (xs) {
+  case xs of
+    h : t -> h
+  | 0 -> 0
+  esac
+}
+
+var xs = {10, 20};
+
+write (headOrZero (xs));
+write (headOrZero ({}))

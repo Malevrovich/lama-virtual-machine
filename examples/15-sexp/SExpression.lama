@@ -1,0 +1,4 @@
+var point = Point (10, 20);
+
+write (point[0]);
+write (point[1])

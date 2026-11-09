@@ -1,0 +1,30 @@
+{
+  "name": "Homework 2 — Lama (Linux x86_64)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "options": ["--platform=linux/amd64"],
+    "args": {
+      "USER_UID": "501",
+      "USER_GID": "20"
+    }
+  },
+  "runArgs": ["--platform=linux/amd64"],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/homework-2,type=bind",
+  "workspaceFolder": "/workspaces/homework-2",
+  "remoteUser": "opam",
+  "updateRemoteUserUID": false,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mrartemsav.lama-lsp",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cmake-tools"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "cmake.generator": "Ninja"
+      }
+    }
+  }
+}

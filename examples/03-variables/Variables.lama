@@ -1,0 +1,5 @@
+var x = 10;
+
+write (x);
+x := x + 5;
+write (x)

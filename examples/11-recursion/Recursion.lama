@@ -1,0 +1,10 @@
+fun factorial (n) {
+  if n <= 1 then
+    1
+  else
+    n * factorial (n - 1)
+  fi
+}
+
+write (factorial (0));
+write (factorial (4))

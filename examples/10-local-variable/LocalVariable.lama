@@ -1,0 +1,9 @@
+var x = 100;
+
+fun addOne (x) {
+  var y = x + 1;
+  y
+}
+
+write (addOne (7));
+write (x)

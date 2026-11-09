@@ -1,0 +1,5 @@
+var x = 3;
+
+write (100 + if x < 5 then 10 else 20 fi);
+x := 8;
+write (100 + if x < 5 then 10 else 20 fi)

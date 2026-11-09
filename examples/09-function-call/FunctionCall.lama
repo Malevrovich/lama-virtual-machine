@@ -1,0 +1,6 @@
+fun subtract (a, b) {
+  a - b
+}
+
+write (subtract (10, 3));
+write (subtract (3, 10))

@@ -1,0 +1,5 @@
+var x = 0;
+
+write (x := 7);
+x := 9;
+write (x)

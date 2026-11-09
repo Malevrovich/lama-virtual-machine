@@ -1,0 +1,14 @@
+fun makeAdder (base) {
+  fun add (x) {
+    base + x
+  }
+
+  add
+}
+
+var addTen = makeAdder (10);
+var addTwenty = makeAdder (20);
+
+write (addTen (1));
+write (addTwenty (1));
+write (addTen (2))

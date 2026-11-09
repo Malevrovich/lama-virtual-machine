@@ -1,0 +1,14 @@
+var x = 3;
+
+if x < 5 then
+  write (10)
+else
+  write (20)
+fi;
+
+x := 8;
+if x < 5 then
+  write (10)
+else
+  write (20)
+fi

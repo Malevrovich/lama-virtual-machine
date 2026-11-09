@@ -1,0 +1,4 @@
+var text = "lama";
+
+write (length (text));
+write (text[0])
