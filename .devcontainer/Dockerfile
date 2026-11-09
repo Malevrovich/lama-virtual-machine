@@ -1,4 +1,3 @@
-# Self-contained Lama environment. Build context: this .devcontainer directory.
 FROM ocaml/opam:ubuntu-24.04-ocaml-4.14@sha256:a466a76facae8aa906428a678960504eeb8834fa518463709ebcda771197aa38
 
 USER root
@@ -21,14 +20,11 @@ RUN git init \
 RUN opam pin add dune 3.17.2 --yes --no-action \
     && opam install dune.3.17.2 --yes --jobs=4 --no-depexts
 
-# The C VM uses Clang's statement attribute __attribute__((musttail)).
-# Command-line make variables also propagate to the nested runtime build.
-# opam clears MAKEFLAGS; GNU make also accepts GNUMAKEFLAGS.
-# gcc-multilib above supplies the legacy -m32 build; avoid the package's
-# cross-toolchain depext names, which are unnecessary inside amd64 Linux.
+# gcc-multilib supplies the legacy -m32 build instead of opam depexts.
 RUN opam pin add Lama . --no-action --yes \
     && opam install Lama --deps-only --yes --jobs=4 --no-depexts
 
+# The VM requires Clang musttail; opam clears MAKEFLAGS but keeps GNUMAKEFLAGS.
 RUN GNUMAKEFLAGS=CC=clang opam install Lama --yes --jobs=4 --no-depexts \
     && mkdir -p /home/opam/lama-bin \
     && ln -s "$(opam var bin)/lamac" /home/opam/lama-bin/lamac \
@@ -36,7 +32,6 @@ RUN GNUMAKEFLAGS=CC=clang opam install Lama --yes --jobs=4 --no-depexts \
     && opam list --installed --columns=name,version > /home/opam/lama-packages.txt
 
 RUN ln -s "$(opam var share)/Lama/x64" /home/opam/lama-stdlib
-# The host UID used by the launcher needs to traverse the image user's home.
 USER root
 RUN chmod 755 /home/opam
 USER opam
@@ -46,14 +41,13 @@ WORKDIR /work
 ENTRYPOINT []
 CMD ["bash"]
 
-# Development tools for the homework. Lama installation above is unchanged.
 USER root
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
        g++ cmake ninja-build clangd \
     && rm -rf /var/lib/apt/lists/*
 
-# Colima preserves host ownership on bind mounts (this Mac uses 501:20).
+# Match host ownership on Colima bind mounts.
 ARG USER_UID=501
 ARG USER_GID=20
 RUN if ! getent group "${USER_GID}" >/dev/null; then \
